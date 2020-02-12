@@ -1,0 +1,20 @@
+name: 'Update team-branch with master'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  nightly-merge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Nightly Merge
+      uses: robotology/gh-action-nightly-merge@v1.2.0
+      with:
+        stable_branch: 'master'
+        development_branch: 'team-branch'
+        allow_ff: false
